@@ -1,7 +1,7 @@
 import createApiClient from "./api.service";
 class ContactService {
     constructor(baseUrl="/api/contacts"){
-        this.api = createApiClient(baseUrl);
+        this.api = createApiClient(baseUrl);  // axios.create bên api.service
     }
     async getALL(){
         return (await this.api.get("/")).data;
