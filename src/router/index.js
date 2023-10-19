@@ -20,6 +20,12 @@ import ContactBook from "@/views/ContactBook.vue";
             props: true 
             //cho phép bạn truyền tham số id từ đường dẫn vào thành phần ContactEdit
         },
+        {
+            path: "/contacts/",  // đường dẫn trang add
+            name: "contact.add",
+            component: () => import("@/views/ContactAdd.vue"),
+            
+        },
 
     ];
     const router = createRouter({

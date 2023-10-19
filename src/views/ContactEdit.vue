@@ -4,6 +4,7 @@
         <!--Trang Form edit/thêm-->
         <ContactForm
             :contact="contact"
+            :mode="mode"
             @submit:contact="updateContact"
             @delete:contact="deleteContact"
         />
@@ -25,6 +26,7 @@
             return {
                 contact: null,
                 message: "",
+                mode: 'edit',
             };
         },
         methods: {
