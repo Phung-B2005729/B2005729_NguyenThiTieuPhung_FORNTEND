@@ -54,7 +54,7 @@
         data() {
             return {
                 contacts: [],
-                activeIndex: -1,
+                activeIndex: -1,  // vị trí liên hệ đang được chọn
                 searchText: "",
             };
         },
@@ -73,33 +73,38 @@
                     return [name, email, address, phone].join("");
                 });
             },
-            filteredContacts() {
+            filteredContacts() { // lọc liên hệ khi tìm kiếm
                 if (!this.searchText) return this.contacts;
-                    return this.contacts.filter((_contact, index) =>
+                return this.contacts.filter((_contact, index) =>
                     this.contactStrings[index].includes(this.searchText)
+                    // mãng các contact có chứa từ tìm kiếm
                 );
             },
-            activeContact() {
+            activeContact() { // liên hệ đang được chọn kiểm tra
                 if (this.activeIndex < 0) return null;
                 return this.filteredContacts[this.activeIndex];
             },
             filteredContactsCount() {
-               return this.filteredContacts.length;
+               return this.filteredContacts.length; //sl các liên hệ khi tìm kiếm
             },
             },
         methods: {
             async retrieveContacts() {
                 try {
+                    // lấy danh sách các contact
                   this.contacts = await ContactService.getAll();
                 } catch (error) {
                     console.log(error);
                 }
             },
             refreshList() {
+                // làm mới danh sách
+                // bỏ chọn
                 this.retrieveContacts();
                 this.activeIndex = -1;
             },
             async removeAllContacts() {
+                // xoá tất cả liên hệ
                 if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
                     try {
                         await ContactService.deleteAll();
@@ -110,11 +115,11 @@
                 }
             },
             goToAddContact() {
-                this.$router.push({ name: "contact.add" });
+                this.$router.push({ name: "contact.add" });  // đến trang thêm liên hệ
             },
         },
         mounted() {
-                this.refreshList();
+                this.refreshList(); // gọi làm mới danh sách khi trang được tải
             },
     };
 </script>

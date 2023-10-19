@@ -1,12 +1,12 @@
 <script>
 export default {
-    props: {
-         modelValue: { type: String, default: "" },
+    props: { ////props sử dụng để định nghĩa các thuộc tính mà thành phần này sẽ nhận từ ngoài
+         modelValue: { type: String, default: "" }, 
      },
-    emits: ["submit", "update:modelValue"],
+    emits: ["submit", "update:modelValue"], //khai báo các sự kiện của thành phần
     methods: {
         updateModelValue(e) {
-            this.$emit("update:modelValue", e.target.value);
+            this.$emit("update:modelValue", e.target.value);  // cập nhật dữ liệu
         },
         submit() {
             this.$emit("submit");
@@ -21,7 +21,7 @@ export default {
             class="form-control"
             placeholder="Nhập thông tin cần tìm"
             :value="modelValue"
-            @input="updateModelValue"
+            @input="updateModelValue" 
             @keyup.enter="submit"
         />
         <div class="input-group-append">
