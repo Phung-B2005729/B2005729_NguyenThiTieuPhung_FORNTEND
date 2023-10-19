@@ -3,6 +3,7 @@ class ContactService {
     constructor(baseUrl="/api/contacts"){
         this.api = createApiClient(baseUrl);  // axios.create bên api.service
     }
+    // các hàm tương tác với backend contact
     async getAll() {
          return (await this.api.get("/")).data;
     }
