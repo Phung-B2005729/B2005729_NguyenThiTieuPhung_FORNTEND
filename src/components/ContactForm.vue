@@ -58,7 +58,8 @@
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button
-                v-if="contactLocal._id"
+                v-if="contactLocal._id || mode === 'edit'"
+               
                 type="button"
                 class="ml-2 btn btn-danger"
                 @click="deleteContact"
@@ -83,7 +84,8 @@
         },
         emits: ["submit:contact", "delete:contact"],
         props: {
-            contact: { type: Object, required: true }
+            contact: { type: Object, default: null },
+            mode: { type: String, default: "create" },
         },
         data() {
             const contactFormSchema = yup.object().shape({  // tạp 1 schema để kiểm tra dữ liệu
@@ -97,7 +99,7 @@
                 phone: yup.string().matches(/((09|03|07|08|05)+([0-9]{8})\b)/g,"Số điện thoại không hợp lệ."),
             });
             return {
-                contactLocal: this.contact,
+                contactLocal: this.contact || { name: "", email: "", address: "", phone: "", favorite: false },
                 contactFormSchema,
             };
         },
