@@ -1,8 +1,9 @@
 <template>
     <Form
         @submit="submitContact"
-        :validation-schema="contactFormSchema"
+        :validation-schema="contactFormSchema"  
     >
+    <!--đặt kiểm tra dữ liệu gàng buộc với các trường nhập liệu :validation-schema="contactFormSchema"  -->
         <div class="form-group">
             <label for="name">Tên</label>
             <Field
@@ -69,8 +70,11 @@
 </template>
 
 <script>
-    import * as yup from "yup";
-    import { Form, Field, ErrorMessage } from "vee-validate";
+    import * as yup from "yup"; // thư viện xác thực kiểm tra tính hợp lệ
+    import { Form, Field, ErrorMessage } from "vee-validate"; // thư viện xây dựng các Form thực hiện xác thực dữ liệu
+        //Form: tạo Form chứa các trường nhập liệu, quản lý trạng thái,sự kiện gửi.
+        //Field: tạo các trường nhập liệu trong trong Form
+        //ErrorMessage: hiển thị thông báo lỗi nếu việc kiểm tra tính hợp lệ thất bại.
     export default {
         components: {
             Form,
@@ -82,7 +86,8 @@
             contact: { type: Object, required: true }
         },
         data() {
-            const contactFormSchema = yup.object().shape({
+            const contactFormSchema = yup.object().shape({  // tạp 1 schema để kiểm tra dữ liệu
+                // định nghĩa các ràng buộc dữ liệu nhập vào
                 name: yup.string().required("Tên phải có giá trị.").min(2, "Tên phải ít nhất 2 ký tự.").max(50, "Tên có nhiều nhất 50 ký tự."),
                 //
                 email: yup.string().email("E-mail không đúng.").max(50, "E-mail tối đa 50 ký tự."),
@@ -98,10 +103,11 @@
         },
         methods: {
             submitContact() {
-                this.$emit("submit:contact", this.contactLocal);
+                this.$emit("submit:contact", this.contactLocal);  // sự kiện submit
+                
             },
             deleteContact() {
-                this.$emit("delete:contact", this.contactLocal.id);
+                this.$emit("delete:contact", this.contactLocal.id);  // sự kiện delete
             },
         },
     };

@@ -13,6 +13,13 @@ import ContactBook from "@/views/ContactBook.vue";
             name: "notfound",
             component: () => import("@/views/NotFound.vue"),
         },
+        {
+            path: "/contacts/:id",  // đường dẫn trang edit
+            name: "contact.edit",
+            component: () => import("@/views/ContactEdit.vue"),
+            props: true 
+            //cho phép bạn truyền tham số id từ đường dẫn vào thành phần ContactEdit
+        },
 
     ];
     const router = createRouter({
