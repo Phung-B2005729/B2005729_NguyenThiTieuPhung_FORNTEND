@@ -3,23 +3,24 @@ class ContactService {
     constructor(baseUrl="/api/contacts"){
         this.api = createApiClient(baseUrl);  // axios.create bên api.service
     }
-    async getALL(){
-        return (await this.api.get("/")).data;
+    async getAll() {
+         return (await this.api.get("/")).data;
     }
-    async create(data){
+    async create(data) {
         return (await this.api.post("/", data)).data;
     }
-    async deleteAll(){
+    async deleteAll() {
         return (await this.api.delete("/")).data;
     }
-    async get(id){
+    async get(id) {
         return (await this.api.get(`/${id}`)).data;
     }
     async update(id, data) {
-        return (await this.api.put(`/${id}`,data)).data;
+            return (await this.api.put(`/${id}`, data)).data;
     }
-    async delete(id){
+    async delete(id) {
         return (await this.api.delete(`/${id}`)).data;
     }
 }
+       
 export default new ContactService();
