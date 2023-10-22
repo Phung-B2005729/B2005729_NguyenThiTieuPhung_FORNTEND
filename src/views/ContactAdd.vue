@@ -6,7 +6,7 @@
             :contact="contact"
             :mode="mode"
             @submit:contact="createContact"
-        />
+        /> <!--truyen phuoc thuc cho submit -> tao moi hoac update hoac delete-->
         <p>{{ message }}</p>
     </div>
 </template>
@@ -21,13 +21,13 @@
        
         data() {
             return {
-                contact: null,
+                contact: null, // du lieu truyen vao form
                 message: "",
-                mode:'create',
+                mode:'create', // du lieu truyen vao form
             };
         },
         methods: {
-            async createContact(data) {
+            async createContact(data) {  // ham goi submit
                 try {
                     await ContactService.create(data);
                     this.message = "Thêm thành công";

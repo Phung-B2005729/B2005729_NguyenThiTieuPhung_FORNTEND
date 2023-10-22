@@ -7,7 +7,7 @@
             :mode="mode"
             @submit:contact="updateContact"
             @delete:contact="deleteContact"
-        />
+        /><!--truyen phuoc thuc cho submit -> tao moi hoac update hoac delete-->
         <p>{{ message }}</p>
     </div>
 </template>
@@ -20,7 +20,7 @@
             ContactForm,
         },
         props: {
-            id: { type: String, required: true },
+            id: { type: String, required: true }, // id nhan tu trang chu contactbook
         },
         data() {
             return {
@@ -32,7 +32,7 @@
         methods: {
             async getContact(id) {
                 try {
-                    this.contact = await ContactService.get(id); // lấy contact có id=id
+                    this.contact = await ContactService.get(id); // lấy contact có id=id truyen vao data contact
                 } catch (error) {
                     console.log(error);
                     // Chuyển sang trang NotFound 
@@ -49,7 +49,7 @@
                     });
                 }
             },
-            async updateContact(data) {
+            async updateContact(data) {  // ham cho submit -> update
                 try {
                     await ContactService.update(this.contact._id, data);
                     this.message = "Liên hệ được cập nhật thành công.";
@@ -59,7 +59,7 @@
                     console.log(error);
                 }
             },
-            async deleteContact() {
+            async deleteContact() {  // ham cho phuong thuc delete
                 if (confirm("Bạn muốn xóa Liên hệ này?")) {
                     try {
                         await ContactService.delete(this.contact._id);

@@ -39,7 +39,7 @@
         <router-link 
             :to="{
                 name: 'contact.edit',
-                params: { id: activeContact._id }, // truyền tham số id với giá trị id của contact đang được chọn
+                params: { id: activeContact._id }, // truyền tham số id với giá trị id của contact đang được chọn vao trang edit-delete
             }"
         >
             <span class="mt-2 badge badge-warning">

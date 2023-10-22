@@ -84,8 +84,8 @@
         },
         emits: ["submit:contact", "delete:contact"],
         props: {
-            contact: { type: Object, default: null },
-            mode: { type: String, default: "create" },
+            contact: { type: Object, default: null }, // dữ lieu contact nhận từ contactadd, contactedit
+            mode: { type: String, default: "create" },// dữ lieu contact nhận từ contactadd, contactedit
         },
         data() {
             const contactFormSchema = yup.object().shape({  // tạp 1 schema để kiểm tra dữ liệu
